@@ -1,0 +1,22 @@
+name: client_repositories
+description: CRUD repositories for HWDB Client
+version: 0.1.0+1
+publish_to: none
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  client_model_validators:
+    path: ../client_model_validators
+  general_utilities:
+    path: ../../../shared-packages/general_utilities
+  hwdb_models:
+    path: ../../../shared-packages/hwdb_models
+  requester:
+    path: ../requester
+
+dev_dependencies:
+  mocktail: ^1.0.0
+  test: ^1.19.2
+  very_good_analysis: ^5.1.0

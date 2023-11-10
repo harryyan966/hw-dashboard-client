@@ -1,0 +1,46 @@
+name: client
+description: A Very Good Project created by Very Good CLI.
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: ">=3.1.0 <4.0.0"
+
+dependencies:
+  bloc: ^8.1.2
+  equatable: ^2.0.5
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^8.1.3
+  flutter_localizations:
+    sdk: flutter  
+  flutter_secure_storage: ^9.0.0
+  go_router: ^12.1.0
+  intl: ^0.18.0
+
+  # hwdb packages
+  cacher:
+    path: packages/cacher
+  client_auth:
+    path: packages/client_auth
+  client_model_validators:
+    path: packages/client_model_validators
+  client_repositories:
+    path: packages/client_repositories
+  core_components:
+    path: packages/core_components  
+  hwdb_models:
+    path: ../shared-packages/hwdb_models
+  requester:
+    path: packages/requester
+
+dev_dependencies:
+  bloc_test: ^9.1.4
+  flutter_test:
+    sdk: flutter
+  mocktail: ^1.0.0
+  very_good_analysis: ^5.1.0
+
+flutter:
+  uses-material-design: true
+  generate: true

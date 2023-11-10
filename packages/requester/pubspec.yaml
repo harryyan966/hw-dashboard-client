@@ -1,0 +1,22 @@
+name: requester
+description: Wrapper for HW Dashboard web API requests.
+version: 0.1.0+1
+publish_to: none
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  dio: ^5.3.3
+
+  cacher:
+    path: ../cacher
+  client_auth:
+    path: ../client_auth
+  general_utilities:
+    path: ../../../shared-packages/general_utilities
+
+dev_dependencies:
+  mocktail: ^1.0.0
+  test: ^1.19.2
+  very_good_analysis: ^5.1.0
