@@ -29,11 +29,11 @@ class Requester {
   final Dio _dio;
   final TokenCacher _tokenCacher;
 
-  Future<void> signIn(String userName, String passwordHash) async {
+  Future<void> signIn(String username, String passwordHash) async {
     final response = await post(
       '/auth/signin',
       data: {
-        'userName': userName,
+        'username': username,
         'passwordHash': passwordHash,
       },
     );

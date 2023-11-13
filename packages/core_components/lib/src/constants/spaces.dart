@@ -7,8 +7,8 @@ abstract final class Space {
   static const double space60 = 60;
   static const double space80 = 80;
 
-  static const double size200 = 200;
-  static const double size240 = 240;
-  static const double size280 = 280;
-  static const double size320 = 320;
+  static const double space200 = 200;
+  static const double space240 = 240;
+  static const double space280 = 280;
+  static const double space320 = 320;
 }

@@ -16,9 +16,9 @@ extension CourseValidators on Course {
       getValue: (Course m) => m.grade,
     ),
     Field(
-      name: 'startYear',
+      name: 'year',
       validator: nonEmptyValidator.that([Ensures(ValueIs.inRange(haiwaiCreatedIn, DateTime.now().year))]),
-      getValue: (Course m) => m.startYear,
+      getValue: (Course m) => m.year,
     ),
     Field(name: 'assignmentIDs', validator: batchIdValidator, getValue: (Course m) => m.detail?.assignmentIDs),
   ];
@@ -27,5 +27,9 @@ extension CourseValidators on Course {
 
   List<Field<Object?, Course>> get fields => _fields;
 
-  List<Field<String, Course>> get searchedFields => _fields.where((field) => ['name', 'description'].contains(field.name)).toList() as List<Field<String, Course>>;
+  // TODO(xiru): optimize
+  List<Field<String, Course>> get searchedFields => [
+        Field(name: 'name', validator: nameValidator, getValue: (Course m) => m.name),
+        Field(name: 'description', validator: nonEmptyValidator, getValue: (Course m) => m.description),
+      ];
 }

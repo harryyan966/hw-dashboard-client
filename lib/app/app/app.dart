@@ -45,18 +45,3 @@ class MainView extends StatelessWidget {
     );
   }
 }
-//   bool _handleExceptions(Object exception, stackTrace) {
-//     if (exception is NotLoggedIn) {
-//       print('NOT LOGGED IN');
-//       showSessionExpiredDialog(navigatorKey.currentState!.overlay!.context);
-//       // hide error
-//       return true;
-//     } else if (exception is Forbidden) {
-//       showForbiddenDialog(navigatorKey.currentState!.overlay!.context);
-//       // hide error
-//       return true;
-//     }
-//     // show error
-//     return false;
-//   }
-// }

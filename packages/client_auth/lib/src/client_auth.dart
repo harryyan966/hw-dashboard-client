@@ -36,8 +36,8 @@ class ClientAuth {
     }
   }
 
-  Future<void> signIn(String userName, String password) async {
+  Future<void> signIn(String username, String password) async {
     final passwordHash = sha256.convert(utf8.encode(password)).toString();
-    await _requester.signIn(userName, passwordHash);
+    await _requester.signIn(username, passwordHash);
   }
 }

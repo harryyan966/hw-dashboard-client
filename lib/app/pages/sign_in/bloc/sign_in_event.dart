@@ -9,8 +9,8 @@ class LoadPage extends SignInEvent {
 }
 
 class SignIn extends SignInEvent {
-  const SignIn({required this.userName, required this.password});
+  const SignIn({required this.username, required this.password});
 
-  final String userName;
+  final String username;
   final String password;
 }

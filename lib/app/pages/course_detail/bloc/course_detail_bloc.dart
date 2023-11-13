@@ -9,19 +9,48 @@ part 'course_detail_state.dart';
 class CourseDetailBloc extends Bloc<CourseDetailEvent, CourseDetailState> {
   CourseDetailBloc({
     required this.courseRepository,
+    // required this.scoreRepository
   }) : super(const CourseDetailState()) {
     on<LoadPage>(_loadPage);
+    on<SelectAssignment>(_selectAssignment);
   }
 
   final CourseRepository courseRepository;
+  // final ScoreRepository scoreRepository;
 
   Future<void> _loadPage(LoadPage event, Emitter<CourseDetailState> emit) async {
     emit(state.copyWith(status: CourseDetailStatus.loading));
     if (event.courseID == null) {
       emit(state.copyWith(status: CourseDetailStatus.error, errorMessage: 'No course id is provided'));
-    } else {
-      final course = await courseRepository.read(event.courseID!);
-      emit(state.copyWith(status: CourseDetailStatus.loaded, course: () => course));
+      return;
     }
+    final course = await courseRepository.read(event.courseID!);
+    final assignments = [
+      for (int i = 0; i < 10; i++)
+        Assignment(
+          id: 'assignment$i',
+          name: 'Assignment $i',
+          type: AssignmentType.finalExam,
+          description:
+              '''assignment description 
+    ];
+
+    emit(state.copyWith(status: CourseDetailStatus.loaded, course: () => course, assignments: assignments));
+  }
+
+  Future<void> _selectAssignment(SelectAssignment event, Emitter<CourseDetailState> emit) async {
+    emit(state.copyWith(status: CourseDetailStatus.loaded, selectedAssignment: event.assignment));
+  }
+}
+''',
+          dueDate: DateTime.now(),
+        ),
+    ];
+
+    emit(state.copyWith(status: CourseDetailStatus.loaded, course: () => course, assignments: assignments));
+  }
+
+  Future<void> _selectAssignment(SelectAssignment event, Emitter<CourseDetailState> emit) async {
+    emit(state.copyWith(status: CourseDetailStatus.loaded, selectedAssignment: event.assignment));
   }
 }

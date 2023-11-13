@@ -1,3 +1,3 @@
-export 'interface.dart';
-export 'mock_crud.dart';
-export 'web_impl.dart';
+export 'course_crud.dart';
+export 'mock_course_crud.dart';
+export 'web_course_crud.dart';

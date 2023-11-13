@@ -22,13 +22,13 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
 
   Future<void> _signIn(SignIn event, Emitter<SignInState> emit) async {
     try {
-      await clientAuth.signIn(event.userName, event.password);
+      await clientAuth.signIn(event.username, event.password);
       emit(state.copyWith(status: SignInStatus.signedIn));
     } on NotFound {
       emit(
         state.copyWith(
           status: SignInStatus.error,
-          errorMessage: 'The userName-password combination is incorrect.',
+          errorMessage: 'The username-password combination is incorrect.',
         ),
       );
     }

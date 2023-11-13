@@ -58,11 +58,11 @@ class WebCRUD<T> extends CRUDRepository<T> {
         'detailed': detailed,
       },
     );
-    final returnedObjects = parseListResponse(response);
+    final returnedObjects = _parseListResponse(response);
     return [..._cachedObjects, ...returnedObjects];
   }
 
-  List<T> parseListResponse(JsonMap response) {
+  List<T> _parseListResponse(JsonMap response) {
     final data = response.get<List<JsonMap>>(dataAt);
     final objectList = data.map(fromJson).toList();
     for (final object in objectList) {

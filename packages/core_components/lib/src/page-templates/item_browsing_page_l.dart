@@ -1,6 +1,4 @@
-import 'package:core_components/src/components/hwdb_search_bar.dart';
-import 'package:core_components/src/constants/_.dart';
-import 'package:core_components/src/page-templates/item_browsing_page.dart';
+import 'package:core_components/core_components.dart';
 import 'package:flutter/material.dart';
 
 class ItemBrowsingPageL extends ItemBrowsingPage {
@@ -18,7 +16,6 @@ class ItemBrowsingPageL extends ItemBrowsingPage {
 
   @override
   Widget build(BuildContext context) {
-    throw Exception('here');
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -49,7 +46,7 @@ class ItemBrowsingPageL extends ItemBrowsingPage {
                 crossAxisCount: 2,
                 crossAxisSpacing: Space.space24,
                 mainAxisSpacing: Space.space24,
-                mainAxisExtent: Space.size200,
+                mainAxisExtent: Space.space200,
               ),
               itemCount: itemCount,
               itemBuilder: (context, index) => GestureDetector(

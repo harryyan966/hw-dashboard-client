@@ -9,3 +9,9 @@ class LoadPage extends CourseDetailEvent {
 
   final String? courseID;
 }
+
+class SelectAssignment extends CourseDetailEvent {
+  const SelectAssignment({required this.assignment});
+
+  final Assignment assignment;
+}
