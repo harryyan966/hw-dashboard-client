@@ -26,8 +26,6 @@ dependencies:
     path: packages/cacher
   client_auth:
     path: packages/client_auth
-  client_model_validators:
-    path: packages/client_model_validators
   client_repositories:
     path: packages/client_repositories
   core_components:

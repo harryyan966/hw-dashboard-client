@@ -39,16 +39,7 @@ class HomeView extends StatelessWidget {
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         title: Text('HW Dashboard', style: Theme.of(context).textTheme.titleMedium),
-        actions: [
-          TextButton(onPressed: () {}, child: const Text('Clubs')),
-          TextButton(onPressed: () => context.pushNamed('courses'), child: const Text('Courses')),
-          TextButton(onPressed: () {}, child: const Text('Homerooms')),
-          TextButton(onPressed: () {}, child: const Text('Blogs')),
-          TextButton(onPressed: () {}, child: const Text('College Application')),
-          const SizedBox(width: Space.space8),
-          _appBarTrailing(context, scaffold),
-          const SizedBox(width: Space.space24),
-        ],
+        actions: _appBarActions(context, scaffold),
       ),
       endDrawer: _endDrawer(),
       body: MediaQuery.removePadding(
@@ -74,6 +65,19 @@ class HomeView extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  List<Widget> _appBarActions(BuildContext context, GlobalKey<ScaffoldState> scaffold) {
+    return [
+        TextButton(onPressed: () {}, child: const Text('Clubs')),
+        TextButton(onPressed: () => context.pushNamed('courses'), child: const Text('Courses')),
+        TextButton(onPressed: () {}, child: const Text('Homerooms')),
+        TextButton(onPressed: () {}, child: const Text('Blogs')),
+        TextButton(onPressed: () {}, child: const Text('College Application')),
+        const SizedBox(width: Space.space8),
+        _appBarTrailing(context, scaffold),
+        const SizedBox(width: Space.space24),
+      ];
   }
 
   UserSettingsDrawer? _endDrawer() =>

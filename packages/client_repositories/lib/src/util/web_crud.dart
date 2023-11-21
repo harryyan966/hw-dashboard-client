@@ -1,4 +1,3 @@
-import 'package:client_repositories/client_repositories.dart';
 import 'package:general_utilities/general_utilities.dart';
 import 'package:requester/requester.dart';
 
@@ -22,8 +21,6 @@ class WebCRUD<T> extends CRUDRepository<T> {
   final JsonMap Function(T object) toJson;
   final void Function(T object) validate;
 
-  final List<T> _cachedObjects = [];
-
   @override
   Future<void> create(T object) async {
     validate(object);
@@ -31,9 +28,9 @@ class WebCRUD<T> extends CRUDRepository<T> {
   }
 
   @override
-  Future<T?> read(String id) async {
+  Future<T?> getByID(String id, {bool detailed = true}) async {
     try {
-      final response = await requester.get(queryAt, queryParams: {'id': id});
+      final response = await requester.get(queryAt, queryParams: {'id': id, 'detailed': detailed});
       final object = fromJson(response.get(dataAt));
       validate(object);
       return object;
@@ -42,27 +39,35 @@ class WebCRUD<T> extends CRUDRepository<T> {
     }
   }
 
-  /// read 'all' with lazy loading
   @override
-  Future<List<T>> readAll({int? amount, bool detailed = false}) async {
-    if (amount != null) {
-      if (amount <= _cachedObjects.length) {
-        return _cachedObjects;
-      }
-    }
+  Future<List<T>> getAllByID(List<String> ids, {bool detailed = false}) async {
     final response = await requester.get(
       queryAt,
-      queryParams: {
-        'start': _cachedObjects.length,
-        'end': amount,
-        'detailed': detailed,
-      },
+      queryParams: {'ids': ids, 'detailed': detailed},
     );
-    final returnedObjects = _parseListResponse(response);
-    return [..._cachedObjects, ...returnedObjects];
+    return _processListResponse(response);
   }
 
-  List<T> _parseListResponse(JsonMap response) {
+  // TODO(xiru): implement caching
+  @override
+  Future<List<T>> getAll({int? amount, bool detailed = false, String? keyword}) async {
+    final queryParams = <String, dynamic>{};
+
+    if (keyword != null && keyword.isNotEmpty) {
+      queryParams['keyword'] = keyword;
+    }
+
+    queryParams['amount'] = amount;
+    queryParams['detailed'] = detailed;
+
+    final response = await requester.get(
+      queryAt,
+      queryParams: queryParams,
+    );
+    return _processListResponse(response);
+  }
+
+  List<T> _processListResponse(JsonMap response) {
     final data = response.get<List<JsonMap>>(dataAt);
     final objectList = data.map(fromJson).toList();
     for (final object in objectList) {

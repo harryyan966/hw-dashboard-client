@@ -24,7 +24,7 @@ class CourseDetailBloc extends Bloc<CourseDetailEvent, CourseDetailState> {
       emit(state.copyWith(status: CourseDetailStatus.error, errorMessage: 'No course id is provided'));
       return;
     }
-    final course = await courseRepository.read(event.courseID!);
+    final course = await courseRepository.getByID(event.courseID!);
     final assignments = [
       for (int i = 0; i < 10; i++)
         Assignment(
@@ -32,7 +32,8 @@ class CourseDetailBloc extends Bloc<CourseDetailEvent, CourseDetailState> {
           name: 'Assignment $i',
           type: AssignmentType.finalExam,
           description:
-              '''assignment description 
+              '''
+assignment description 
     ];
 
     emit(state.copyWith(status: CourseDetailStatus.loaded, course: () => course, assignments: assignments));

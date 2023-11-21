@@ -14,12 +14,11 @@ class AppView extends StatelessWidget {
   Widget build(BuildContext context) {
     PlatformDispatcher.instance.onError = (exception, stackTrace) {
       if (exception is NotLoggedIn) {
-        print('NOT LOGGED IN, SHOWING SESSION EXPIRED DIALOG');
         showSessionExpiredDialog(navigatorKey.currentContext!);
         return true;
       } else if (exception is Forbidden) {
-        print('FORBIDDEN, SHOWING FORBIDDEN DIALOG');
         showForbiddenDialog(navigatorKey.currentContext!);
+        return true;
       }
       return false;
     };

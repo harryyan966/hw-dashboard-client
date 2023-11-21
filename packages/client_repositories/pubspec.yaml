@@ -7,8 +7,6 @@ environment:
   sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
-  client_model_validators:
-    path: ../client_model_validators
   general_utilities:
     path: ../../../shared-packages/general_utilities
   hwdb_models:

@@ -13,8 +13,6 @@ dependencies:
     path: ../cacher
   requester:
     path: ../requester
-  client_model_validators:
-    path: ../client_model_validators
   general_utilities:
     path: ../../../shared-packages/general_utilities
   hwdb_models:

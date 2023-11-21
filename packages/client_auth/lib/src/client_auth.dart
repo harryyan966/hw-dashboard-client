@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:cacher/cacher.dart';
-import 'package:client_model_validators/client_model_validators.dart';
 import 'package:crypto/crypto.dart';
 import 'package:general_utilities/general_utilities.dart';
 import 'package:hwdb_models/hwdb_models.dart';

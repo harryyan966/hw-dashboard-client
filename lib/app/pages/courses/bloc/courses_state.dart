@@ -20,16 +20,7 @@ class CoursesState extends Equatable {
   @override
   List<Object?> get props => [status, errorMessage, courses, teachers, searchKeyword];
 
-  List<Course> get filteredCourses => searchKeyword == null || searchKeyword!.isEmpty
-      ? courses!
-      : courses!.where((Course course) {
-          for (final field in course.searchedFields) {
-            if (field.getValue(course).toLowerCase().contains(searchKeyword!.toLowerCase())) {
-              return true;
-            }
-          }
-          return false;
-        }).toList();
+  List<Course> get filteredCourses => courses!.where((c) => c.match(searchKeyword)).toList();
 
   CoursesState copyWith({
     CoursesStatus? status,

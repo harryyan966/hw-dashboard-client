@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:client_model_validators/client_model_validators.dart';
 import 'package:client_repositories/client_repositories.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hwdb_models/hwdb_models.dart';
@@ -24,12 +23,12 @@ class CoursesBloc extends Bloc<CoursesEvent, CoursesState> {
     emit(state.copyWith(status: CoursesStatus.loading));
 
     // get courses
-    final courses = await courseRepository.readAll(amount: 10);
+    final courses = await courseRepository.getAll(amount: 10);
 
     // get teachers based on the teacher ids provided
     final teachers = <String, User>{};
     for (final course in courses) {
-      final teacher = await userRepository.read(course.teacherID);
+      final teacher = await userRepository.getByID(course.teacherID);
       if (teacher == null) {
         emit(state.copyWith(status: CoursesStatus.error, errorMessage: 'Some teacher id is not valid'));
       } else {
